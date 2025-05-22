@@ -1,0 +1,32 @@
+[package]
+name = "deskhopper"
+version = "0.0.1"
+edition = "2021"
+
+[dependencies]
+global-hotkey = "0.4.0"
+winvd = "0.0.48"
+tao = "0.29.1"
+tray-icon = "0.10.0"
+anyhow = "1.0.86"
+log = "0.4.21"
+env_logger = "0.11.3"
+image = { version = "0.25.1", default-features = false, features = ["ico"] } # For loading ICO for tray
+
+[dependencies.windows]
+version = "0.58.0"
+features = [
+    "Win32_UI_WindowsAndMessaging",
+    "Win32_Foundation",
+]
+
+[build-dependencies]
+embed-resource = "2.5.0"
+
+# Release profile
+[profile.release]
+strip = true
+opt-level = "z"
+lto = true
+codegen-units = 1
+panic = "abort"
